@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expedicao Brasil | Trekking & Camping</title>
+  <meta name="description" content="Expedicao Brasil: trilhas, camping e ecoturismo em Montes Claros, MG.">
+  <style>
+    :root {
+      --ink: #071018;
+      --night: #0b1620;
+      --pine: #314d39;
+      --sage: #6f8757;
+      --sand: #f3ead4;
+      --clay: #b68d5a;
+      --orange: #ef7b2d;
+      --fire: #ffb13b;
+      --mist: rgba(243, 234, 212, .76);
+      --line: rgba(243, 234, 212, .16);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--sand);
+      background:
+        linear-gradient(rgba(7, 16, 24, .88), rgba(7, 16, 24, .7)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Serra%20do%20Cip%C3%B3%2C%202014%2003.jpg") center/cover fixed;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(7, 16, 24, .72);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--night);
+      border: 3px solid var(--sage);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .brand span {
+      display: block;
+      color: rgba(243, 234, 212, .7);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: rgba(243, 234, 212, .78);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--fire);
+    }
+
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border: 1px solid rgba(243, 234, 212, .2);
+      border-radius: 8px;
+      background: rgba(243, 234, 212, .08);
+      color: var(--sand);
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(243, 234, 212, .14);
+    }
+
+    .btn.primary {
+      background: var(--orange);
+      color: #1b1008;
+      border-color: var(--orange);
+      box-shadow: 0 14px 38px rgba(239, 123, 45, .32);
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      padding: 56px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(320px, 1.05fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .badge-logo {
+      width: min(460px, 100%);
+      margin: 0 auto;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .45));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--fire);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--fire);
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(3.2rem, 8vw, 6.6rem);
+      line-height: .88;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy p {
+      max-width: 590px;
+      margin: 24px 0 28px;
+      color: rgba(243, 234, 212, .82);
+      font-size: clamp(1.05rem, 2vw, 1.24rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+      max-width: 650px;
+    }
+
+    .quick-info article {
+      padding: 20px;
+      background: rgba(7, 16, 24, .7);
+    }
+
+    .quick-info strong {
+      display: block;
+      color: var(--fire);
+      font-size: 1.9rem;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .quick-info span {
+      color: rgba(243, 234, 212, .74);
+      font-size: .88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: .94;
+      text-transform: uppercase;
+      letter-spacing: -.03em;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      color: rgba(243, 234, 212, .74);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(to top, rgba(7, 16, 24, .9), rgba(7, 16, 24, .22)), var(--photo);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .card h3 {
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: rgba(243, 234, 212, .78);
+    }
+
+    .routes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .route {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(7, 16, 24, .72);
+      backdrop-filter: blur(14px);
+    }
+
+    .route-thumb {
+      min-height: 130px;
+      border-radius: 7px;
+      background: var(--photo) center/cover;
+    }
+
+    .route small {
+      color: var(--fire);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .route h3 {
+      margin: 8px 0;
+      font-size: 1.35rem;
+    }
+
+    .route p {
+      color: rgba(243, 234, 212, .73);
+    }
+
+    .cta {
+      margin-bottom: 70px;
+      padding: 46px;
+      border-radius: 8px;
+      border: 1px solid rgba(239, 123, 45, .42);
+      background:
+        linear-gradient(90deg, rgba(7, 16, 24, .96), rgba(7, 16, 24, .58)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Ouro%20Preto%20do%20Brasil.jpg") center/cover;
+    }
+
+    .cta h2 {
+      max-width: 700px;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: .93;
+      text-transform: uppercase;
+    }
+
+    .cta p {
+      max-width: 560px;
+      margin: 16px 0 26px;
+      color: rgba(243, 234, 212, .78);
+      font-size: 1.08rem;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      color: rgba(243, 234, 212, .64);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .routes {
+        grid-template-columns: 1fr;
+      }
+
+      .badge-logo {
+        width: min(360px, 92vw);
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand {
+        font-size: .92rem;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .quick-info,
+      .route {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-info article,
+      .cta {
+        padding: 22px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" role="img">
+          <circle cx="50" cy="50" r="45" fill="#0b1620"/>
+          <path d="M17 67h66v11H17z" fill="#314d39"/>
+          <path d="M18 66 C31 47, 42 38, 52 21 C62 42, 71 48, 84 66 Z" fill="#f3ead4"/>
+          <path d="M25 66 C35 51, 42 46, 51 28 C60 49, 67 54, 77 66 Z" fill="#b68d5a"/>
+          <path d="M50 29 L44 62 L56 62 Z" fill="#071018"/>
+          <path d="M27 68 C40 57, 56 56, 72 68" fill="none" stroke="#6f8757" stroke-width="5"/>
+          <path d="M36 76 C43 68, 57 68, 64 76 Z" fill="#ef7b2d"/>
+        </svg>
+      </span>
+      <div>Expedicao Brasil <span>Trekking & Camping</span></div>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegacao principal">
+      <a href="#experiencias">Experiencias</a>
+      <a href="#roteiros">Roteiros</a>
+      <a href="#agenda">Agenda</a>
+    </nav>
+
+    <a class="btn primary" href="#agenda">Agendar</a>
+  </header>
+
+  <main>
+    <section class="shell hero">
+      <div class="hero-grid">
+        <div class="badge-logo" aria-label="Logo Expedição Brasil">
+          <svg viewBox="0 0 720 720" role="img">
+            <defs>
+              <path id="topText" d="M113 360a247 247 0 0 1 494 0"/>
+              <path id="bottomText" d="M607 360a247 247 0 0 1-494 0"/>
+            </defs>
+            <circle cx="360" cy="360" r="330" fill="#08131d" stroke="#6f8757" stroke-width="18"/>
+            <circle cx="360" cy="360" r="248" fill="#0b1822" stroke="#6f8757" stroke-width="8"/>
+            <text fill="#f3ead4" font-size="58" font-weight="900" letter-spacing="6">
+              <textPath href="#topText" startOffset="50%" text-anchor="middle">EXPEDICAO BRASIL</textPath>
+            </text>
+            <text fill="#f3ead4" font-size="42" font-weight="900" letter-spacing="5">
+              <textPath href="#bottomText" startOffset="50%" text-anchor="middle">TREKKING & CAMPING</textPath>
+            </text>
+            <circle cx="360" cy="360" r="196" fill="#f3ead4"/>
+            <path d="M166 350h388v150H166z" fill="#314d39"/>
+            <path d="M166 330h388v62H166z" fill="#ef7b2d"/>
+            <path d="M166 318c52-52 112-55 159-18 39-66 100-104 151-8 32-21 62-16 78 26v44H166z" fill="#f3ead4"/>
+            <path d="M176 429 C244 325, 283 301, 319 222 C350 304, 392 352, 430 429 Z" fill="#0b1620"/>
+            <path d="M220 429 C264 357, 292 329, 318 245 C350 335, 377 366, 400 429 Z" fill="#b68d5a"/>
+            <path d="M318 245 L292 423 L344 423 Z" fill="#f3ead4"/>
+            <path d="M372 429 C421 340, 460 315, 510 244 C548 334, 582 376, 608 429 Z" fill="#0b1620"/>
+            <path d="M411 429 C447 368, 478 336, 508 267 C541 350, 561 383, 580 429 Z" fill="#8b765b"/>
+            <path d="M508 267 L482 424 L531 424 Z" fill="#f3ead4"/>
+            <path d="M150 510 C220 440, 294 452, 369 508 C439 562, 512 548, 582 502" fill="none" stroke="#6f8757" stroke-width="18"/>
+            <path d="M257 525 C286 462, 354 462, 386 525 Z" fill="#ef7b2d" stroke="#071018" stroke-width="8"/>
+            <path d="M321 472 L321 525" stroke="#071018" stroke-width="8"/>
+            <path d="M417 525 c14-29 42-29 55 0" fill="none" stroke="#ffb13b" stroke-width="10"/>
+            <path d="M446 501 c18 22 18 38 0 54 c-20-17-19-34 0-54z" fill="#ef7b2d"/>
+            <circle cx="288" cy="173" r="24" fill="#f3ead4"/>
+            <circle cx="302" cy="164" r="24" fill="#0b1822"/>
+            <path d="M250 162h7M382 148h7M440 178h7M498 156h7" stroke="#f3ead4" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hero-copy">
+          <div class="eyebrow">Montes Claros, MG</div>
+          <h1>O Brasil sob os seus pes.</h1>
+          <p>
+            Roteiros por serras, cachoeiras, cidades historicas e mirantes de Minas Gerais para quem quer sair da rotina,
+            respirar fundo e descobrir paisagens brasileiras com seguranca, estrutura e alma de expedicao.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#agenda">Loja e agenda</a>
+            <a class="btn" href="#roteiros">Ver roteiros</a>
+          </div>
+          <div class="quick-info" aria-label="Resumo da agencia">
+            <article>
+              <strong>04</strong>
+              <span>experiencias</span>
+            </article>
+            <article>
+              <strong>MG</strong>
+              <span>ponto de partida</span>
+            </article>
+            <article>
+              <strong>BR</strong>
+              <span>trilhas nacionais</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencias" class="shell">
+      <div class="section-head">
+        <h2>Experiencias para viver fora do mapa comum.</h2>
+        <p>Da primeira trilha ao camping completo, a Expedição Brasil organiza o caminho por destinos reais de Minas Gerais.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card" style="--photo:url('https://commons.wikimedia.org/wiki/Special:FilePath/Serra%20do%20Cip%C3%B3%2C%202014%2003.jpg')">
+          <h3>Serra do Cipo</h3>
+          <p>Trilhas, campos rupestres e cachoeiras em um dos cenarios naturais mais marcantes de Minas.</p>
+        </article>
+        <article class="card" style="--photo:url('https://commons.wikimedia.org/wiki/Special:FilePath/Mar%20de%20Minas%2C%20Capit%C3%B3lio%2C%20MG%20%28por%20Eduardo%20Bellon%29.png')">
+          <h3>Capitolio</h3>
+          <p>Lago de Furnas, canions, mirantes e passeios para quem quer ver o Mar de Minas de perto.</p>
+        </article>
+        <article class="card" style="--photo:url('https://commons.wikimedia.org/wiki/Special:FilePath/Parque%20Estadual%20do%20Ibitipoca.jpg')">
+          <h3>Ibitipoca</h3>
+          <p>Grutas, mirantes e quedas d'agua em um parque perfeito para ecoturismo e caminhada.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="roteiros" class="shell">
+      <div class="section-head">
+        <h2>Roteiros em destaque.</h2>
+        <p>Ideias de saida para divulgar a agenda, montar pacotes e receber reservas pelo WhatsApp.</p>
+      </div>
+
+      <div class="routes">
+        <article class="route">
+          <div class="route-thumb" style="--photo:url('https://commons.wikimedia.org/wiki/Special:FilePath/Ouro%20Preto%20do%20Brasil.jpg')"></div>
+          <div>
+            <small>Historico e cultural</small>
+            <h3>Ouro Preto e mirantes</h3>
+            <p>Caminhada urbana por ladeiras, igrejas, arquitetura colonial e pontos panoramicos da cidade historica.</p>
+          </div>
+        </article>
+
+        <article class="route">
+          <div class="route-thumb" style="--photo:url('https://commons.wikimedia.org/wiki/Special:FilePath/Lapinha%20da%20Serra%2C%20em%20Serra%20do%20Cip%C3%B3.jpg')"></div>
+          <div>
+            <small>Fim de semana</small>
+            <h3>Lapinha da Serra</h3>
+            <p>Base para camping, caminhada, paisagens de montanha e uma das atmosferas mais bonitas da Serra do Cipo.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="agenda" class="shell">
+      <div class="cta">
+        <div class="eyebrow">Loja e agenda</div>
+        <h2>Pronto para colocar a bota na trilha?</h2>
+        <p>Reserve sua proxima experiencia em Minas Gerais, combine uma saida para seu grupo ou monte um pacote personalizado com a Expedição Brasil.</p>
+        <a class="btn primary" href="https://wa.me/5538999999999" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <strong>Expedicao Brasil</strong>
+      <span>Trilhas, camping e ecoturismo | Montes Claros, MG</span>
+    </div>
+  </footer>
+</body>
+</html>
